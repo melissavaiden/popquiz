@@ -1,0 +1,10 @@
+.header {
+    margin: auto;
+    text-align: center;
+}
+.dropcontainer {
+    margin-left: 100px;
+    padding: 20px;
+    font-size:xx-large;
+    font-family: monospace;
+}
