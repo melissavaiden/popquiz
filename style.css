@@ -8,3 +8,14 @@
     font-size:xx-large;
     font-family: monospace;
 }
+.draggables {
+    padding: 20px;
+    font-size:xx-large;
+    font-family: monospace;
+    position: relative;
+    left: 600px;
+    bottom: 620px;
+}
+html {
+    background-color: #6495ED;
+}
