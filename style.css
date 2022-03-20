@@ -2,26 +2,23 @@
     margin: auto;
     text-align: center;
 }
-.dropContainer {
-    margin-left: 50px;
+.dropBox {
     padding: 20px;
     font-size:xx-large;
     font-family: monospace;
-    background-color: lightseagreen;
 }
 .draggables {
     padding: 20px;
     font-size:xx-large;
     font-family: monospace;
-    position: relative;
-    left: 600px;
-    bottom: 1000px;
-    background-color: lightpink;
+    background-color: lightpink; 
+    cursor: pointer;
+    display: inline-block
 }
-html {
+body {
     background-color: #6495ED;
 }
 
 .movingObj {
-    opacity: 5%;
+    opacity: 50%;
 }

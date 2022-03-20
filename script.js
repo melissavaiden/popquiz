@@ -1,6 +1,6 @@
 //Globals
 const draggableObjects = document.querySelectorAll('.draggables')
-const dropContainer = document.querySelectorAll('.dropContainer')
+const dropContainer = document.querySelectorAll('.dropBox')
 
 //Event Listeners
 document.addEventListener('DOMContentLoaded', (resp) => {
@@ -20,6 +20,14 @@ draggableObjects.forEach(draggables => {
     })
 })
 
+dropContainer.forEach(container => {
+    container.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const draggable = document.querySelector('.movingObj')
+        container.appendChild(draggable);
+    })
+})
+
 
 //Grabbing Top Hit Data from API
 function getTopHits() {
@@ -30,7 +38,7 @@ fetch("https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-03-18"
 	}
 })
 .then(response => response.json())
-.then(data => data.content[randomizeHits()])
+.then(data => console.log(data.content[randomizeHits()].title))
 .catch(err => {
 	console.error(err);
 })};
@@ -41,9 +49,3 @@ function randomizeHits() {
     return randomNumber;
 }
 
-//Creating Draggables
-    function draggables() {
-        return `
-        <p class="draggables" draggable="true">"${getTopHits()}"</p>
-        `
-}
