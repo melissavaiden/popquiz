@@ -2,11 +2,12 @@
     margin: auto;
     text-align: center;
 }
-.dropcontainer {
-    margin-left: 100px;
+.dropContainer {
+    margin-left: 50px;
     padding: 20px;
     font-size:xx-large;
     font-family: monospace;
+    background-color: lightseagreen;
 }
 .draggables {
     padding: 20px;
@@ -14,8 +15,13 @@
     font-family: monospace;
     position: relative;
     left: 600px;
-    bottom: 620px;
+    bottom: 1000px;
+    background-color: lightpink;
 }
 html {
     background-color: #6495ED;
+}
+
+.movingObj {
+    opacity: 5%;
 }
