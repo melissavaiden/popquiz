@@ -5,7 +5,6 @@ const dropContainer = document.querySelectorAll('.dropBox')
 //Event Listeners
 document.addEventListener('DOMContentLoaded', (resp) => {
     console.log('Dom is Loaded');
-    getTopHits();
 })
 
 draggableObjects.forEach(draggables => {
@@ -29,19 +28,28 @@ dropContainer.forEach(container => {
 })
 
 
-//Grabbing Top Hit Data from API
-function getTopHits() {
-fetch("https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-03-18", {
+//Grabbing Top Hit Data from API and Rendering on Page
+async function getTopHits() {
+    const response = await fetch("https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-03-18", {
 	"headers": {
 		"x-rapidapi-host": "billboard-api2.p.rapidapi.com",
 		"x-rapidapi-key": "f7e6bb3797mshd2ace5b23f0447dp16e2e8jsne644dd13656d"
 	}
-})
-.then(response => response.json())
-.then(data => console.log(data.content[randomizeHits()].title))
-.catch(err => {
-	console.error(err);
-})};
+}); const data = await response.json();
+    console.log(data)
+    const num = randomizeHits();
+    const title = (data.content[num].title)
+    const artist = (data.content[num].artist)
+    const singleTag = [title, artist]
+    document.getElementsByClassName('draggables').innerHTML = singleTag;
+    console.log(document.getElementsByClassName('draggables').innerHTML)
+}
+   
+    getTopHits();
+
+// .catch(err => {
+// 	console.error(err);
+// })};
 
 //Randomizing Order of Hits
 function randomizeHits() {
@@ -49,3 +57,4 @@ function randomizeHits() {
     return randomNumber;
 }
 
+//Inject JSON data into HTML
