@@ -1,11 +1,27 @@
 .header {
     margin: auto;
     text-align: center;
+    padding: 10px;
+    width: fit-content;
 }
+#h1 {
+    background-color: mediumpurple;
+    border-radius: 25px;
+    margin-bottom: 10px;
+}
+#h2 {
+    background-color: mediumpurple;
+    border-radius: 25px;
+    margin-bottom: 10px;
+}
+
 .dropBox {
-    padding: 20px;
+    padding: 10px;
     font-size:xx-large;
     font-family: monospace;
+    background-color: lightseagreen;
+    margin-bottom: 10px;
+    border-radius: 60px;
 }
 .draggables {
     padding: 20px;
@@ -13,7 +29,8 @@
     font-family: monospace;
     background-color: lightpink; 
     cursor: pointer;
-    display: inline-block
+    display: inline-block;
+    border-radius: 25px;
 }
 body {
     background-color: #6495ED;
@@ -21,4 +38,8 @@ body {
 
 .movingObj {
     opacity: 50%;
+}
+
+.selections {
+    text-align: center;
 }
