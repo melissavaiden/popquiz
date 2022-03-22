@@ -40,7 +40,7 @@ async function getTopHits() {
     const num = randomizeHits();
     const title = (data.content[num].title)
     const artist = (data.content[num].artist)
-    const singleTag = [title, artist]
+    const singleTag = {title, artist}
     document.getElementsByClassName('draggables').innerHTML = singleTag;
     console.log(document.getElementsByClassName('draggables').innerHTML)
 }
