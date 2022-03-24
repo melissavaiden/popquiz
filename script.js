@@ -22,9 +22,9 @@ async function getTopHits() {
         p.draggable = "true"
         p.classList.add('draggables')
         p.innerHTML = song;
-        const singleTag = selectionsContainer.appendChild(p)
+        selectionsContainer.appendChild(p)
     })
-
+    addDrag();
 }
 
 
@@ -43,17 +43,17 @@ function addDrag() {
 })
 }
     
-
 function dragAndDrop() {
     const dropContainer = document.querySelectorAll('.dropBox')
     dropContainer.forEach(container => {
         container.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            const draggable = document.querySelector('.draggables')
+            e.preventDefault()
+            const draggable = document.querySelector(".movingObj")
             container.appendChild(draggable);
     })
 })
 }
+dragAndDrop();
 // .catch(err => {
 // 	console.error(err);
 // })};

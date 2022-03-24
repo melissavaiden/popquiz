@@ -43,3 +43,15 @@ body {
 .selections {
     text-align: center;
 }
+
+#submitButton {
+    text-align: center;
+}
+
+#submit {
+    font-size: larger;
+    background-color: lightblue;
+    border-radius: 25px;
+    padding: 5px;
+    width: 100px;
+}
