@@ -25,7 +25,7 @@
 }
 .draggables {
     padding: 20px;
-    font-size:xx-large;
+    font-size: medium;
     font-family: monospace;
     background-color: lightpink; 
     cursor: pointer;

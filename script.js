@@ -1,32 +1,9 @@
-//Globals
-const draggableObjects = document.querySelectorAll('.draggables')
-const dropContainer = document.querySelectorAll('.dropBox')
-
 //Event Listeners
-document.addEventListener('DOMContentLoaded', (resp) => {
-    console.log('Dom is Loaded');
+document.addEventListener('DOMContentLoaded', (response) => {
+    console.log('Dom is Loaded')
+    getTopHits();
+    addDrag();
 })
-
-draggableObjects.forEach(draggables => {
-    draggables.addEventListener('dragstart', () => {
-        draggables.classList.add('movingObj')
-    })
-})
-
-draggableObjects.forEach(draggables => {
-    draggables.addEventListener('dragend', () => {
-        draggables.classList.remove('movingObj');
-    })
-})
-
-dropContainer.forEach(container => {
-    container.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        const draggable = document.querySelector('.movingObj')
-        container.appendChild(draggable);
-    })
-})
-
 
 //Grabbing Top Hit Data from API and Rendering on Page
 async function getTopHits() {
@@ -35,24 +12,51 @@ async function getTopHits() {
 		"x-rapidapi-host": "billboard-api2.p.rapidapi.com",
 		"x-rapidapi-key": "f7e6bb3797mshd2ace5b23f0447dp16e2e8jsne644dd13656d"
 	}
-}); const data = await response.json();
-    console.log(data)
-    const num = randomizeHits();
-    const title = (data.content[num].title)
-    const artist = (data.content[num].artist)
-    const singleTag = [title, artist]
-    document.getElementsByClassName('draggables').innerHTML = singleTag;
-    console.log(document.getElementsByClassName('draggables').innerHTML)
-}
-   
-    getTopHits();
+}) 
+    const data = await response.json();
+    const songs = Object.values(data.content)
+    songs.forEach(element => {
+        let song = "Title:" + element.title + "<br>" + "Arist:" + element.artist;
+        const selectionsContainer = document.getElementById('selectionsContainer')
+        const p = document.createElement('p')
+        p.draggable = "true"
+        p.classList.add('draggables')
+        p.innerHTML = song;
+        const singleTag = selectionsContainer.appendChild(p)
+    })
 
+}
+
+
+//Drag and Drop Functions
+function addDrag() {
+    const draggableObjects = document.querySelectorAll('.draggables')
+    draggableObjects.forEach(draggables => {
+        draggables.addEventListener('dragstart', () => {
+            draggables.classList.add('movingObj')
+    })
+})
+    draggableObjects.forEach(draggables => {
+        draggables.addEventListener('dragend', () => {
+            draggables.classList.remove('movingObj');
+    })
+})
+}
+    
+
+function dragAndDrop() {
+    const dropContainer = document.querySelectorAll('.dropBox')
+    dropContainer.forEach(container => {
+        container.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            const draggable = document.querySelector('.draggables')
+            container.appendChild(draggable);
+    })
+})
+}
 // .catch(err => {
 // 	console.error(err);
 // })};
+function randomizeSongs() {
 
-//Randomizing Order of Hits
-function randomizeHits() {
-    const randomNumber = Math.floor(Math.random() * 10) + 1;
-    return randomNumber;
 }
