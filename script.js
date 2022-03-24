@@ -1,13 +1,14 @@
 //Event Listeners
-document.addEventListener('DOMContentLoaded', (response) => {
-    console.log('Dom is Loaded')
+document.addEventListener('DOMContentLoaded', (e) => {
+    console.log('Dom is Loaded');
     getTopHits();
     addDrag();
+    dragAndDrop();
 })
 
 //Grabbing Top Hit Data from API and Rendering on Page
 async function getTopHits() {
-    const response = await fetch("https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-03-18", {
+    const response = await fetch("https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-03-24", {
 	"headers": {
 		"x-rapidapi-host": "billboard-api2.p.rapidapi.com",
 		"x-rapidapi-key": "f7e6bb3797mshd2ace5b23f0447dp16e2e8jsne644dd13656d"
@@ -15,7 +16,11 @@ async function getTopHits() {
 }) 
     const data = await response.json();
     const songs = Object.values(data.content)
+    .map(a => ({value: a, sort:Math.random()}))
+    .sort((a, b) => a.sort - b.sort)
+    .map(a => a.value)
     songs.forEach(element => {
+        console.log(element)
         let song = "Title:" + element.title + "<br>" + "Arist:" + element.artist;
         const selectionsContainer = document.getElementById('selectionsContainer')
         const p = document.createElement('p')
@@ -26,7 +31,6 @@ async function getTopHits() {
     })
     addDrag();
 }
-
 
 //Drag and Drop Functions
 function addDrag() {
@@ -47,16 +51,16 @@ function dragAndDrop() {
     const dropContainer = document.querySelectorAll('.dropBox')
     dropContainer.forEach(container => {
         container.addEventListener('dragover', (e) => {
-            e.preventDefault()
+            e.preventDefault();
             const draggable = document.querySelector(".movingObj")
             container.appendChild(draggable);
     })
 })
 }
-dragAndDrop();
+
 // .catch(err => {
 // 	console.error(err);
 // })};
 function randomizeSongs() {
-
+    
 }
