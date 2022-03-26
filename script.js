@@ -16,11 +16,10 @@ async function getTopHits() {
 }) 
     const data = await response.json();
     const songs = Object.values(data.content)
-    .map(a => ({value: a, sort:Math.random()}))
+    const newSongs = songs.map(a => ({value: a, sort:Math.random()}))
     .sort((a, b) => a.sort - b.sort)
     .map(a => a.value)
     songs.forEach(element => {
-        console.log(element)
         let song = "Title:" + element.title + "<br>" + "Arist:" + element.artist;
         const selectionsContainer = document.getElementById('selectionsContainer')
         const p = document.createElement('p')
@@ -30,7 +29,19 @@ async function getTopHits() {
         selectionsContainer.appendChild(p)
     })
     addDrag();
+    submitAnswers();
+    
 }
+
+//Submit Button Event Handler
+function submitAnswers() {
+
+}
+
+
+
+
+
 
 //Drag and Drop Functions
 function addDrag() {
@@ -56,11 +67,4 @@ function dragAndDrop() {
             container.appendChild(draggable);
     })
 })
-}
-
-// .catch(err => {
-// 	console.error(err);
-// })};
-function randomizeSongs() {
-    
 }
