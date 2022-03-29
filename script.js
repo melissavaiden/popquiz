@@ -1,4 +1,3 @@
-//Event Listeners
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('Dom is Loaded');
     getTopHits();
@@ -16,7 +15,7 @@ async function getTopHits() {
 }) 
     const data = await response.json();
     const songs = Object.values(data.content)
-    const newSongs = songs.map(a => ({value: a, sort:Math.random()}))
+    .map(a => ({value: a, sort:Math.random()}))
     .sort((a, b) => a.sort - b.sort)
     .map(a => a.value)
     songs.forEach(element => {
@@ -29,18 +28,22 @@ async function getTopHits() {
         selectionsContainer.appendChild(p)
     })
     addDrag();
+    dragAndDrop();
     submitAnswers();
-    
-}
+    //Submit Button Event Handler
+    function submitAnswers() {
+        const submitButton = document.getElementById("submit")
+        const divId = document.querySelectorAll('.dropBox')
+        const songId = document.querySelectorAll('.draggables')
+        submitButton.addEventListener("click", () => {
+            for (let i = 0; i < 11; i++) {
+                if (songId.id !== divId.id) {
+                    console.log("we got it!")
+                } else console.log("We don't got it")
+            }
 
-//Submit Button Event Handler
-function submitAnswers() {
-
-}
-
-
-
-
+        })
+     }}
 
 
 //Drag and Drop Functions
@@ -55,16 +58,26 @@ function addDrag() {
         draggables.addEventListener('dragend', () => {
             draggables.classList.remove('movingObj');
     })
+    const dropContainer = document.querySelectorAll('.dropBox')
+    dropContainer.forEach(container => {
+        container.addEventListener('drop', (e) => {
+            const newId = e.currentTarget.id
+            draggables.setAttribute('id', newId)
+        })
+    })
 })
 }
-    
+
+
+//Add Draggable Bubble to Container
 function dragAndDrop() {
     const dropContainer = document.querySelectorAll('.dropBox')
     dropContainer.forEach(container => {
         container.addEventListener('dragover', (e) => {
             e.preventDefault();
-            const draggable = document.querySelector(".movingObj")
+            const draggable = document.querySelector('.movingObj')
             container.appendChild(draggable);
     })
-})
-}
+})}
+
+
