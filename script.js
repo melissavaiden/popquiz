@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', (e) => {
     console.log('Dom is Loaded');
     getTopHits();
-    addDrag();
-    dragAndDrop();
 })
 
 //Grabbing Top Hit Data from API and Rendering on Page
@@ -27,23 +25,27 @@ async function getTopHits() {
         p.innerHTML = song;
         selectionsContainer.appendChild(p)
     })
+    submitAnswers();
     addDrag();
     dragAndDrop();
-    submitAnswers();
-    //Submit Button Event Handler
-    function submitAnswers() {
-        const submitButton = document.getElementById("submit")
-        const divId = document.querySelectorAll('.dropBox')
-        const songId = document.querySelectorAll('.draggables')
-        submitButton.addEventListener("click", () => {
-            for (let i = 0; i < 11; i++) {
-                if (songId.id !== divId.id) {
-                    console.log("we got it!")
-                } else console.log("We don't got it")
-            }
+}
+ // Submit Button Event Handler
+function submitAnswers() {
+    const submitButton = document.getElementById("submit")
+    submitButton.addEventListener("click", () => {
+    const divId = document.getElementsByClassName('dropBox')
+    const paraId = document.getElementsByClassName('draggables')
+    console.log(paraId)
+    console.log(divId)
+    for (let i = 0; i < 11; i++) {
+        if (paraId[i].id === divId[i].id) {
+            console.log('we got it!')
+        } else console.log("We don't got it")
+    }
 
-        })
-     }}
+})
+}
+
 
 
 //Drag and Drop Functions
@@ -62,8 +64,9 @@ function addDrag() {
     dropContainer.forEach(container => {
         container.addEventListener('drop', (e) => {
             const newId = e.currentTarget.id
-            draggables.setAttribute('id', newId)
-        })
+            console.log(newId)
+            e.target.setAttribute('id', newId)
+                })
     })
 })
 }
@@ -79,5 +82,3 @@ function dragAndDrop() {
             container.appendChild(draggable);
     })
 })}
-
-
