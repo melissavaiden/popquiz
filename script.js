@@ -16,6 +16,7 @@ async function getTopHits() {
     .map(a => ({value: a, sort:Math.random()}))
     .sort((a, b) => a.sort - b.sort)
     .map(a => a.value)
+    console.log(songs)
     songs.forEach(element => {
         let song = "Title:" + element.title + "<br>" + "Arist:" + element.artist;
         const selectionsContainer = document.getElementById('selectionsContainer')
@@ -39,11 +40,12 @@ function submitAnswers() {
     bubbles.forEach(bubble => {
         if (bubble.dataset['rank'] === bubble.dataset['guess']) {
             correctAnswers++
-        }
+            bubble.classList.add('green')
+        } else bubble.classList.add('red')
     })
     if (correctAnswers === bubbles.length) {
-        console.log('hooray')
-    }
+        alert(`You got them all correct!`)
+    } else alert (`You got ${correctAnswers} correct!`)
 })
 }
 
