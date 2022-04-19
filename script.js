@@ -20,6 +20,7 @@ async function getTopHits() {
         let song = "Title:" + element.title + "<br>" + "Arist:" + element.artist;
         const selectionsContainer = document.getElementById('selectionsContainer')
         const p = document.createElement('p')
+        p.dataset['rank'] = element.rank
         p.draggable = "true"
         p.classList.add('draggables')
         p.innerHTML = song;
@@ -33,14 +34,16 @@ async function getTopHits() {
 function submitAnswers() {
     const submitButton = document.getElementById("submit")
     submitButton.addEventListener("click", () => {
-    const paragraph = document.getElementsByClassName('draggables')
-    console.log(paragraph[0])
-    // for (let i = 0; i < 11; i++) {
-    //     if (  === ) {
-    //         console.log('we got it!')
-    //     } else console.log("We don't got it")
-    // }
-
+    let correctAnswers = 0
+    const bubbles = document.querySelectorAll('.draggables')
+    bubbles.forEach(bubble => {
+        if (bubble.dataset['rank'] === bubble.dataset['guess']) {
+            correctAnswers++
+        }
+    })
+    if (correctAnswers === bubbles.length) {
+        console.log('hooray')
+    }
 })
 }
 
@@ -61,8 +64,7 @@ function addDrag() {
     dropContainer.forEach(container => {
         container.addEventListener('drop', (e) => {
             const newId = e.currentTarget.id
-            console.log(newId)
-            e.target.setAttribute('id', newId)
+            e.target.dataset['guess'] = newId
                 })
     })
 })
