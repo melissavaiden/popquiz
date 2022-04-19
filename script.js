@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 //Grabbing Top Hit Data from API and Rendering on Page
 async function getTopHits() {
-    const response = await fetch("https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-03-24", {
+    const response = await fetch("https://billboard-api2.p.rapidapi.com/hot-100?range=1-10&date=2022-04-14", {
 	"headers": {
 		"x-rapidapi-host": "billboard-api2.p.rapidapi.com",
 		"x-rapidapi-key": "f7e6bb3797mshd2ace5b23f0447dp16e2e8jsne644dd13656d"
@@ -25,27 +25,24 @@ async function getTopHits() {
         p.innerHTML = song;
         selectionsContainer.appendChild(p)
     })
-    submitAnswers();
     addDrag();
     dragAndDrop();
+    submitAnswers();
 }
  // Submit Button Event Handler
 function submitAnswers() {
     const submitButton = document.getElementById("submit")
     submitButton.addEventListener("click", () => {
-    const divId = document.getElementsByClassName('dropBox')
-    const paraId = document.getElementsByClassName('draggables')
-    console.log(paraId)
-    console.log(divId)
-    for (let i = 0; i < 11; i++) {
-        if (paraId[i].id === divId[i].id) {
-            console.log('we got it!')
-        } else console.log("We don't got it")
-    }
+    const paragraph = document.getElementsByClassName('draggables')
+    console.log(paragraph[0])
+    // for (let i = 0; i < 11; i++) {
+    //     if (  === ) {
+    //         console.log('we got it!')
+    //     } else console.log("We don't got it")
+    // }
 
 })
 }
-
 
 
 //Drag and Drop Functions
