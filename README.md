@@ -6,4 +6,5 @@ A fun little quiz where you put the Billboard top 10 hits in order from 1-10.
 3. Select SSH and copy SSH key.
 4. In the terminal, type 'git clone' followed by the SSH key and hit enter. 
 5. Once the file is cloned, navagate to that file in the directory. 
-6. You can open Pop Quiz by typing in 'open index.html' inside of the file.
+6. You can open Pop Quiz in your browser by typing in 'open index.html' inside of the file. 
+7. Enjoy!
