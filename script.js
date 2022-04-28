@@ -49,7 +49,6 @@ function submitAnswers() {
 })
 }
 
-
 //Drag and Drop Functions
 function addDrag() {
     const draggableObjects = document.querySelectorAll('.draggables')
